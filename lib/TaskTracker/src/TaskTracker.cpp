@@ -63,7 +63,7 @@ void TaskTracker::printTaskList()
                       i,
                       it->m_taskHandle,
                       it->m_taskName,
-                      uxTaskGetStackHighWaterMark(it->m_taskHandle),
+                      uxTaskGetStackHighWaterMark(*(it->m_taskHandle)),
                       it->m_maxStack,
                       it->m_path,
                       it->m_line);

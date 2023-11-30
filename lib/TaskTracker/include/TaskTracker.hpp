@@ -71,6 +71,10 @@ public:
 #define xADD_TAST_TO_TRACKER(_handleTask_x, _taskName_x, _stackDepth_x) \
     TaskTracker::getInstance().addTask(_handleTask_x, _taskName_x, _stackDepth_x, __FILENAME__, __LINE__);
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
+#define xPRINT_TASK_LIST() TaskTracker::getInstance().printTaskList();
+
 /**
  * @brief Macro to create a tracked task.
  */
