@@ -85,8 +85,8 @@ public:
 /**
  * @brief Macro to delete a tracked task.
  */
-#define xTASK_DELETE_TRACKED(_handleTask_x) \
-    vTaskDelete(*_handleTask_x);            \
-    TaskTracker::getInstance().removeTask(_handleTask_x);
+#define xTASK_DELETE_TRACKED(_handleTask_x)               \
+    TaskTracker::getInstance().removeTask(_handleTask_x); \
+    vTaskDelete(*_handleTask_x);
 
 #endif // TASK_TRACKER_HPP

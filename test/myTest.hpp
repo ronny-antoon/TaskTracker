@@ -28,7 +28,7 @@ TEST(MyTest, Test1)
 
     delay(1000);
 
-    vTASK_DELETE_TRACKED(taskHandle);
+    xTASK_DELETE_TRACKED(taskHandle);
 
     delay(100);
 
