@@ -10,32 +10,23 @@ void funcTask1(void *parameter)
   }
 }
 
-TaskHandle_t *newHandle = new TaskHandle_t;
 void setup()
 {
   Serial.begin(115200);
-  delay(1000);
-  // newHandle = TaskHandle_t;
-  xTASK_CREATE_TRACKED(funcTask1, "task1", 2048, nullptr, 1, newHandle);
-  delay(1000);
+  Serial.println("Starting...");
+
+  TaskHandle_t newHandle;
+
+  xTASK_CREATE_TRACKED(funcTask1, "tmpName", 2048, nullptr, 1, &newHandle);
+
+  delay(5000);
+
+  xTASK_DELETE_TRACKED(&newHandle);
+
+  newHandle = nullptr;
 }
 
-int i = 0;
 void loop()
 {
-  i++;
-  // print all tasks
-  TaskTracker::getInstance().printTaskList();
-  if (i == 5)
-  {
-    vTASK_DELETE_TRACKED(newHandle);
-  }
-
-  if (i == 8)
-  {
-    xTASK_CREATE_TRACKED(funcTask1, "task1", 2048, nullptr, 1, newHandle);
-    i = 0;
-  }
-
-  delay(10000);
+  delay(1000);
 }

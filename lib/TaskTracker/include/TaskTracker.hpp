@@ -17,6 +17,7 @@ struct TaskInfo
     char const *m_taskName;     ///< Task name.
     uint32_t m_maxStack;        ///< Maximum stack size.
     char const *m_path;         ///< File path where the task is created.
+    int m_line;                 ///< Line number where the task is created.
 };
 
 /**
@@ -44,7 +45,7 @@ public:
      */
     void addTask(
         TaskHandle_t *taskHandle, char const *taskName,
-        uint32_t maxStack, char const *const path);
+        uint32_t maxStack, char *path, int line);
 
     /**
      * @brief Remove a task from the tracking list.
@@ -62,17 +63,26 @@ public:
 };
 
 /**
+ * @brief Macro to add a task to the tracker.
+ *
+ * @note This macro should be used after the task is created.
+ * @note DONT USE THIS MACRO IF YOU ARE USING xTASK_CREATE_TRACKED MACRO.
+ */
+#define xADD_TAST_TO_TRACKER(_handleTask_x, _taskName_x, _stackDepth_x) \
+    TaskTracker::getInstance().addTask(_handleTask_x, _taskName_x, _stackDepth_x, __FILENAME__, __LINE__);
+
+/**
  * @brief Macro to create a tracked task.
  */
-#define xTASK_CREATE_TRACKED(_pvTaskCode_, _pcName_, _usStackDepth_, _pvParameters_, _uxPriority_, _pxCreatedTask_) \
-    xTaskCreate(_pvTaskCode_, _pcName_, _usStackDepth_, _pvParameters_, _uxPriority_, _pxCreatedTask_);             \
-    TaskTracker::getInstance().addTask(_pxCreatedTask_, _pcName_, _usStackDepth_, __FILENAME__);
+#define xTASK_CREATE_TRACKED(_taskCode_x, _taskName_x, _stackDepth_x, _parameter_x, _taskPriority_x, _handleTask_x) \
+    xTaskCreate(_taskCode_x, _taskName_x, _stackDepth_x, _parameter_x, _taskPriority_x, _handleTask_x);             \
+    xADD_TAST_TO_TRACKER(_handleTask_x, _taskName_x, _stackDepth_x);
 
 /**
  * @brief Macro to delete a tracked task.
  */
-#define vTASK_DELETE_TRACKED(_pvTaskCode_) \
-    vTaskDelete(*_pvTaskCode_);            \
-    TaskTracker::getInstance().removeTask(_pvTaskCode_);
+#define xTASK_DELETE_TRACKED(_handleTask_x) \
+    vTaskDelete(*_handleTask_x);            \
+    TaskTracker::getInstance().removeTask(_handleTask_x);
 
 #endif // TASK_TRACKER_HPP
