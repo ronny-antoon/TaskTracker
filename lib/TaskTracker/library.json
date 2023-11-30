@@ -1,0 +1,30 @@
+{
+    "name": "TaskTracker",
+    "version": "1.0.0",
+    "description": "A C++ task tracking library for FreeRTOS on the ESP32 platform, providing a singleton vector to manage and monitor tasks.",
+    "keywords": [
+        "FreeRTOS",
+        "ESP32",
+        "task tracking",
+        "task monitoring",
+        "singleton vector"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ronny-antoon/TaskTracker.git"
+    },
+    "authors": [
+        {
+            "name": "Ronny Antoon",
+            "email": "ronnyantoon@gmail.com",
+            "url": "https://github.com/ronny-antoon"
+        }
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/ronny-antoon/TaskTracker",
+    "frameworks": "arduino",
+    "platforms": "espressif32",
+    "examples": [
+        "examples/*/*.ino"
+    ]
+}
