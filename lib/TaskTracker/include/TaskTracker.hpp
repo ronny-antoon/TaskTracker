@@ -6,6 +6,7 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 #define INCLUDE_uxTaskGetStackHighWaterMark 1 // TaskHandle_t
+#define INCLUDE_vTaskDelete 1                 // vTaskDelete
 
 /**
  * @brief Structure to store information about a tracked task.
