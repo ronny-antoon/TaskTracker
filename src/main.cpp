@@ -21,7 +21,7 @@ void setup()
 
   delay(5000);
 
-  xPRINT_TASK_LIST();
+  xTASK_LIST_PRINT();
 
   xTASK_DELETE_TRACKED(&newHandle);
 
@@ -30,6 +30,6 @@ void setup()
 
 void loop()
 {
-  xPRINT_TASK_LIST();
+  xTASK_LIST_PRINT();
   delay(5000);
 }

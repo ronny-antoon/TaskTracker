@@ -1,6 +1,6 @@
 {
     "name": "TaskTracker",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "description": "A C++ task tracking library for FreeRTOS on the ESP32 platform, providing a singleton vector to manage and monitor tasks.",
     "keywords": [
         "FreeRTOS",
